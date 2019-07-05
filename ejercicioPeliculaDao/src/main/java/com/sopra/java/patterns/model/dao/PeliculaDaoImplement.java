@@ -1,14 +1,16 @@
 package com.sopra.java.patterns.model.dao;
 
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sopra.java.model.entities.Pelicula;
 
 public class PeliculaDaoImplement implements IPeliculaDao {
-	
-	private Map<String, Pelicula> almacenDePeliculas = new HashMap<String, Pelicula>();
+	ApplicationContext context = new ClassPathXmlApplicationContext("ejercicioPelicula.xml");
+	private Map<String, Pelicula> almacenDePeliculas = context.getBean("miMapa", Map.class);
 	
 	@Override
 	public void create(Pelicula pelicula) {

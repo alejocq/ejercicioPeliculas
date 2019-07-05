@@ -4,12 +4,16 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.sopra.java.model.entities.Pelicula;
 import com.sopra.java.patterns.model.dao.IPeliculaDao;
 import com.sopra.java.patterns.model.dao.PeliculaDaoImplement;
 
 public class GestorPeliculas {
-	private IPeliculaDao peliculaDao = new PeliculaDaoImplement();
+	ApplicationContext context = new ClassPathXmlApplicationContext("ejercicioPelicula.xml");
+	private IPeliculaDao peliculaDao = context.getBean("peliculaDaoImplement", PeliculaDaoImplement.class);
 	
 	
 	public void altaPeliculas(List<Pelicula> pelicula) {		

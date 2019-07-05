@@ -1,19 +1,22 @@
 package com.sopra.java.patterns;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sopra.java.model.entities.Pelicula;
 import com.sopra.java.patterns.model.business.GestorPeliculas;
 
 public class Main {
 	public static void main(String[] args) {
-		GestorPeliculas gestionPeliculas = new GestorPeliculas();
-		List<Pelicula> listaPeliculas = new ArrayList<>();
-		List<Pelicula> listaPeliculasAModificar = new ArrayList<>();
-		List<Pelicula> listaPeliculasABorrar = new ArrayList<>();
+		ApplicationContext context = new ClassPathXmlApplicationContext("ejercicioPelicula.xml");
+		GestorPeliculas gestionPeliculas = context.getBean("gestorPeliculas", GestorPeliculas.class);
+		List<Pelicula> listaPeliculas = context.getBean("miLista", List.class);
+		List<Pelicula> listaPeliculasAModificar = context.getBean("miLista", List.class);
+		List<Pelicula> listaPeliculasABorrar = context.getBean("miLista", List.class);
 		for(int i = 0; i < 10; i++) {
-			Pelicula pelicula = new Pelicula();
+			Pelicula pelicula = context.getBean("pelicula", Pelicula.class);
 			pelicula.setIdentificador(Integer.toString(i));
 			pelicula.setTitulo("La casa del terror");
 			pelicula.setDirector("Tarantino");
@@ -21,7 +24,7 @@ public class Main {
 			listaPeliculas.add(pelicula);
 		}
 		for(int i = 0; i < 2; i++) {
-			Pelicula pelicula = new Pelicula();
+			Pelicula pelicula = context.getBean("pelicula", Pelicula.class);
 			pelicula.setIdentificador(Integer.toString(i));
 			pelicula.setTitulo("Toy Story");
 			pelicula.setDirector("Pixar");
@@ -29,7 +32,7 @@ public class Main {
 			listaPeliculasAModificar.add(pelicula);
 		}
 		for(int i = 8; i < 10; i++) {
-			Pelicula pelicula = new Pelicula();
+			Pelicula pelicula = context.getBean("pelicula", Pelicula.class);
 			pelicula.setIdentificador(Integer.toString(i));
 			pelicula.setTitulo("Toy Story");
 			pelicula.setDirector("Pixar");
