@@ -9,8 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.sopra.java.model.entities.Pelicula;
 
 public class PeliculaDaoImplement implements IPeliculaDao {
-	ApplicationContext context = new ClassPathXmlApplicationContext("ejercicioPelicula.xml");
-	private Map<String, Pelicula> almacenDePeliculas = context.getBean("miMapa", Map.class);
+	private Map<String, Pelicula> almacenDePeliculas;
 	
 	@Override
 	public void create(Pelicula pelicula) {
