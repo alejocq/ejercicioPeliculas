@@ -11,7 +11,8 @@
 	<bean
 		id="peliculaDaoImplement"		
 		class="com.sopra.java.patterns.model.dao.PeliculaDaoImplement"
-		scope="singleton">
+		scope="prototype">
+		
 	</bean>
 	<bean
 		id="gestorPeliculas"

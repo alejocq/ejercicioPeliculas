@@ -3,15 +3,20 @@ package com.sopra.java.patterns.model.dao;
 import java.util.Collection;
 import java.util.Map;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import com.sopra.java.model.entities.Pelicula;
 
 public class PeliculaDaoImplement implements IPeliculaDao {
-	ApplicationContext context = new ClassPathXmlApplicationContext("ejercicioPelicula.xml");
-	private Map<String, Pelicula> almacenDePeliculas = context.getBean("miMapa", Map.class);
 	
+	private Map<String, Pelicula> almacenDePeliculas;
+	
+	public Map<String, Pelicula> getAlmacenDePeliculas() {
+		return almacenDePeliculas;
+	}
+
+	public void setAlmacenDePeliculas(Map<String, Pelicula> almacenDePeliculas) {
+		this.almacenDePeliculas = almacenDePeliculas;
+	}
+
 	@Override
 	public void create(Pelicula pelicula) {
 		almacenDePeliculas.putIfAbsent(pelicula.getIdentificador(), pelicula);
@@ -39,5 +44,7 @@ public class PeliculaDaoImplement implements IPeliculaDao {
 	public Pelicula readById(String id) {		
 		return almacenDePeliculas.get(id);
 	}
+
+	
 
 }
